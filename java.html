@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Exercises — Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #faf8f4; --surface: #ffffff; --border: #e0d8cc;
+      --text: #2c2420; --muted: #8c7d70; --teal: #0d7377; --green: #16a34a;
+    }
+    body { 
+      background: var(--bg); 
+      color: var(--text); 
+      font-family: 'Fira Code', monospace; 
+      font-size: 0.88rem; 
+      line-height: 1.8; 
+      padding: 2rem 1rem 6rem; 
+    }
+    .page-header { 
+      max-width: 740px; margin: 0 auto 3rem; border-bottom: 2px solid var(--text); padding-bottom: 1.5rem; 
+    }
+    .page-header h1 { 
+      font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; 
+    }
+    .page-header p { 
+      color: var(--muted); 
+      margin-top: 0.4rem; 
+    }
+    .ex { 
+      max-width: 740px; 
+      margin: 0 auto 3.5rem; 
+    }
+    .ex-header { 
+      display: flex; 
+      align-items: baseline; 
+      gap: 1rem; 
+      margin-bottom: 1rem;
+    }
+    .ex-num { 
+      font-family: 'DM Serif Display', serif; font-size: 3rem; 
+      color: var(--border); 
+      line-height: 1; 
+      flex-shrink: 0; 
+    }
+    .ex-title { 
+      font-family: 'DM Serif Display', serif; font-size: 1.2rem; 
+      color: var(--text); 
+    }
+    .demo { 
+      background: var(--surface); 
+      border: 1px solid var(--border); 
+      padding: 1.6rem; 
+      border-radius: 2px; 
+    }
+    .console-out { 
+      background: #1e1e1e; 
+      color: #d4d4d4; 
+      font-family: 'Fira Code', monospace; 
+      font-size: 0.82rem; 
+      padding: 1rem 1.2rem; 
+      border-radius: 2px; 
+      margin-top: 0.8rem; 
+    }
+    .console-out .log { 
+      color: #9cdcfe; 
+    }
+    .console-out .comment { 
+      color: #6a9955; 
+    }
+    button { 
+      font-family: 'Fira Code', monospace; 
+      font-size: 0.82rem; 
+      cursor: pointer; 
+      border: 2px solid var(--teal); 
+      background: transparent; 
+      color: var(--teal); 
+      padding: 0.5rem 1.2rem; 
+      transition: background 0.18s, color 0.18s; border-radius: 2px; 
+    }
+    button:hover { 
+      background: var(--teal); 
+      color: #fff; 
+    }
+    .result { 
+      margin-top: 0.8rem; 
+      padding: 0.6rem 1rem; 
+      background: var(--bg); 
+      border-left: 3px solid var(--teal); 
+      font-size: 0.85rem; 
+      min-height: 2.2rem; 
+      color: var(--text); 
+    }
+    .input-group { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 0.6rem; 
+      align-items: center; 
+      margin-bottom: 0.8rem; 
+    }
+    input[type="number"] { 
+      font-family: 'Fira Code', monospace; 
+      font-size: 0.85rem; 
+      border: 1px solid var(--border); 
+      padding: 0.4rem 0.8rem; 
+      width: 120px; 
+      background: var(--bg); 
+      color: var(--text); 
+      border-radius: 2px; 
+    }
+    input:focus { 
+      outline: 2px solid var(--teal); 
+      border-color: transparent; 
+    }
+    label { 
+      color: var(--muted); 
+      font-size: 0.8rem; 
+    }
+    hr.ex-divider { 
+      max-width: 740px; 
+      margin: 0 auto 3rem; 
+      border: none; 
+      border-top: 1px dashed var(--border); 
+    }
+    #load-msg { 
+      font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--muted); font-style: italic; min-height: 1.8rem; transition: color 0.3s; 
+    }
+    #load-msg.loaded { 
+      color: var(--green); 
+      font-style: normal; 
+    }
+    .spinner { 
+      display: inline-block; 
+      width: 10px; 
+      height: 10px; 
+      border: 2px solid var(--border); border-top-color: var(--teal); 
+      border-radius: 50%; 
+      animation: spin 0.7s linear infinite; margin-right: 0.5rem; 
+      vertical-align: middle; 
+    }
+    @keyframes spin { 
+      to { transform: rotate(360deg); } 
+    }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <h1>JavaScript<br />Exercises</h1>
+    <p>// Six exercises solved — interactive demos included.</p>
+  </div>
+
+  <section class="ex" id="ex1">
+    <div class="ex-header"><span class="ex-num">01</span><span class="ex-title">Hello, JavaScript!</span></div>
+    <div class="demo">
+      <p style="color:var(--muted); margin-bottom:0.8rem;"><code>console.log()</code> prints to the browser console (F12). Shown inline here:</p>
+      <div class="console-out">
+        <div class="comment">// What the browser console sees:</div>
+        <div class="log" id="ex1-output"></div>
+      </div>
+    </div>
+  </section>
+  <hr class="ex-divider" />
+
+  <section class="ex" id="ex2">
+    <div class="ex-header"><span class="ex-num">02</span><span class="ex-title">Variables &amp; Math</span></div>
+    <div class="demo">
+      <div class="input-group">
+        <label for="num1">num1:</label><input type="number" id="num1" value="12" />
+        <label for="num2">num2:</label><input type="number" id="num2" value="5" />
+        <button onclick="calcMath()">Calculate</button>
+      </div>
+      <div class="console-out" id="ex2-output"></div>
+    </div>
+  </section>
+  <hr class="ex-divider" />
+
+  <section class="ex" id="ex3">
+    <div class="ex-header"><span class="ex-num">03</span><span class="ex-title">User Input &amp; Alerts</span></div>
+    <div class="demo">
+      <p style="color:var(--muted); margin-bottom:0.8rem;">Uses <code>prompt()</code> dialogs. Click to trigger.</p>
+      <button onclick="runEx3()">Run prompt() demo</button>
+      <div class="result" id="ex3-result">— result appears here —</div>
+    </div>
+  </section>
+  <hr class="ex-divider" />
+
+  <section class="ex" id="ex4">
+    <div class="ex-header"><span class="ex-num">04</span><span class="ex-title">If Statements &amp; Conditions</span></div>
+    <div class="demo">
+      <div class="input-group">
+        <label for="age-input">Your age:</label>
+        <input type="number" id="age-input" value="17" min="0" max="120" />
+        <button onclick="checkAge()">Check</button>
+      </div>
+      <div class="result" id="ex4-result">— result appears here —</div>
+    </div>
+  </section>
+  <hr class="ex-divider" />
+
+  <section class="ex" id="ex5">
+    <div class="ex-header"><span class="ex-num">05</span><span class="ex-title">Click Events &amp; DOM Manipulation</span></div>
+    <div class="demo">
+      <h2 id="click-heading" style="font-family:'DM Serif Display',serif; font-size:1.4rem; margin-bottom:1rem;">
+        This text will change when you click the button.
+      </h2>
+      <button id="click-btn">Click me!</button>
+    </div>
+  </section>
+  <hr class="ex-divider" />
+
+  <section class="ex" id="ex6">
+    <div class="ex-header"><span class="ex-num">06</span><span class="ex-title">async / await — Fake Data Loader</span></div>
+    <div class="demo">
+      <button id="load-btn">Load Message</button>
+      <div style="margin-top:1rem;"><p id="load-msg">Waiting for you to click…</p></div>
+    </div>
+  </section>
+
+  <script>
+    // Exercise 1
+    const name1 = "Diana";
+    const food = "sushi";
+    console.log("My name is " + name1);
+    console.log("My favourite food is " + food);
+    document.getElementById("ex1-output").innerHTML =
+      `<div class="log">> "My name is ${name1}"</div>` +
+      `<div class="log">> "My favourite food is ${food}"</div>`;
+
+    // Exercise 2
+    function calcMath() {
+      const num1 = Number(document.getElementById("num1").value);
+      const num2 = Number(document.getElementById("num2").value);
+      const division = num2 !== 0 ? (num1 / num2).toFixed(2) : "∞";
+      document.getElementById("ex2-output").innerHTML = `
+        <div class="log">${num1} + ${num2} = <strong>${num1 + num2}</strong></div>
+        <div class="log">${num1} - ${num2} = <strong>${num1 - num2}</strong></div>
+        <div class="log">${num1} × ${num2} = <strong>${num1 * num2}</strong></div>
+        <div class="log">${num1} ÷ ${num2} = <strong>${division}</strong></div>`;
+    }
+    calcMath();
+
+    // Exercise 3
+    function runEx3() {
+      const userName = prompt("What is your name?");
+      const userColor = prompt("What is your favourite color?");
+      if (userName && userColor) {
+        const message = `Hi ${userName}! Your favourite color is ${userColor}.`;
+        alert(message);
+        document.getElementById("ex3-result").textContent = message;
+      } else {
+        document.getElementById("ex3-result").textContent = "Prompt was cancelled.";
+      }
+    }
+
+    // Exercise 4
+    function checkAge() {
+      const age = parseInt(document.getElementById("age-input").value, 10);
+      const result = document.getElementById("ex4-result");
+      if (isNaN(age) || age < 0) { result.textContent = "Please enter a valid age."; return; }
+      if (age < 13)       result.textContent = `Age ${age} → You're a kid! 🧒`;
+      else if (age <= 19) result.textContent = `Age ${age} → You're a teenager! 🎒`;
+      else                result.textContent = `Age ${age} → You're an adult! 🎓`;
+    }
+    checkAge();
+
+    // Exercise 5
+    const messages = ["You clicked it! 🎉","Nice — now try again.","Still clicking? Respect.","The DOM bows to your cursor.","JavaScript is fun, right?"];
+    let clickCount = 0;
+    document.getElementById("click-btn").addEventListener("click", function () {
+      document.getElementById("click-heading").innerText = messages[clickCount++ % messages.length];
+    });
+
+    // Exercise 6
+    function fetchMessage() {
+      return new Promise(resolve => setTimeout(() => resolve("Hello from the future! ✉️"), 2000));
+    }
+    document.getElementById("load-btn").addEventListener("click", async function () {
+      const btn = document.getElementById("load-btn");
+      const msg = document.getElementById("load-msg");
+      btn.disabled = true;
+      msg.classList.remove("loaded");
+      msg.innerHTML = `<span class="spinner"></span>Loading…`;
+      msg.innerHTML = await fetchMessage();
+      msg.classList.add("loaded");
+      btn.disabled = false;
+    });
+  </script>
+</body>
+</html>
