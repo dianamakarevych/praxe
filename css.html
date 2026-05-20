@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Exercises — Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital@0;1&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --surface: #161616; --border: #2a2a2a;
+      --text: #e8e2d9; --muted: #6b6560;
+      --lime: #c8f53a; --orange: #ff6b35; --blue: #3a8fff; --pink: #ff3a8f;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; font-size: 0.9rem; line-height: 1.7; padding: 2rem 1rem 6rem; }
+    .page-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 6vw, 4rem); letter-spacing: -0.03em; color: var(--lime); max-width: 760px; margin: 0 auto 0.4rem; }
+    .page-subtitle { color: var(--muted); font-size: 0.8rem; max-width: 760px; margin: 0 auto 3rem; font-style: italic; }
+    .ex { max-width: 760px; margin: 0 auto 4rem; }
+    .ex-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--lime); padding: 0.15em 0.6em; margin-bottom: 1.4rem; font-family: 'Syne', sans-serif; font-weight: 700; }
+    .ex-tag.orange { background: var(--orange); }
+    .ex-tag.blue   { background: var(--blue); }
+    .ex-tag.pink   { background: var(--pink); }
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 760px; margin: 0 auto 3.5rem; }
+
+    /* Ex 1 */
+    #ex1 .demo { background-color: #1a2e1a; padding: 2rem; border: 1px solid #2d4d2d; }
+    #ex1 .demo h1 { color: #c8f53a; font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+    #ex1 .demo p { color: #a8d8a8; }
+
+    /* Ex 2 */
+    #ex2 .demo { background: var(--surface); padding: 2rem; border: 1px solid var(--border); }
+    #ex2 .demo h1 { font-family: 'Syne', sans-serif; font-size: 2rem; color: var(--text); margin-bottom: 1rem; }
+    #ex2 .demo .p-one { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--orange); }
+    #ex2 .demo .p-two { font-family: 'Space Mono', monospace; font-size: 0.85rem; font-style: italic; color: var(--muted); margin-top: 0.6rem; }
+
+    /* Ex 3 */
+    #ex3 .demo { padding: 2rem; background: var(--surface); }
+    #ex3 .quote-box { border: 2px solid var(--orange); padding: 1.5rem 2rem; margin: 0 auto; max-width: 500px; position: relative; }
+    #ex3 .quote-box::before { content: '"'; font-family: 'Syne', sans-serif; font-size: 5rem; color: var(--orange); opacity: 0.2; position: absolute; top: -1.5rem; left: 0.5rem; line-height: 1; }
+    #ex3 .quote-box p { font-size: 1rem; line-height: 1.6; color: var(--text); }
+    #ex3 .quote-box cite { display: block; margin-top: 0.8rem; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; }
+
+    /* Ex 4 */
+    #ex4 .demo { background: var(--surface); border: 1px solid var(--border); padding: 0; overflow: hidden; }
+    #ex4 nav ul { list-style-type: none; display: flex; margin: 0; padding: 0; }
+    #ex4 nav ul li a { display: block; text-decoration: none; color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; padding: 1rem 1.6rem; border-right: 1px solid var(--border); transition: background 0.18s, color 0.18s; }
+    #ex4 nav ul li:last-child a { border-right: none; }
+    #ex4 nav ul li a:hover { background: var(--lime); color: var(--bg); }
+
+    /* Ex 5 */
+    #ex5 .demo { background: var(--surface); padding: 2rem; }
+    .profile-card { max-width: 320px; margin: 0 auto; border: 1px solid var(--border); padding: 2rem; text-align: center; box-shadow: 6px 6px 0 var(--pink); transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s; }
+    .profile-card:hover { border-color: var(--lime); box-shadow: 8px 8px 0 var(--lime); transform: translate(-2px, -2px); }
+    .profile-card img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--pink); margin-bottom: 1rem; }
+    .profile-card h2 { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text); margin-bottom: 0.4rem; }
+    .profile-card p { color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
+
+    .code-note { font-size: 0.75rem; color: var(--muted); font-style: italic; margin-top: 1rem; padding-left: 0.8rem; border-left: 2px solid var(--border); }
+    .code-note span { color: var(--lime); font-style: normal; }
+  </style>
+</head>
+<body>
+  <p class="page-title">CSS Exercises</p>
+  <p class="page-subtitle">// Five solutions, one file.</p>
+
+  <section class="ex" id="ex1">
+    <div class="ex-tag lime">Exercise 1 — Background &amp; Text Colors</div>
+    <div class="demo">
+      <h1>Welcome to the Garden</h1>
+      <p>The background-color property sets the canvas. The color property paints the words.</p>
+    </div>
+    <p class="code-note">Properties used: <span>background-color</span>, <span>color</span></p>
+  </section>
+  <hr class="divider" />
+
+  <section class="ex" id="ex2">
+    <div class="ex-tag orange">Exercise 2 — Fonts &amp; Text Styling</div>
+    <div class="demo">
+      <h1>Typography in CSS</h1>
+      <p class="p-one">This paragraph is set in Syne, larger, and bolded using font-weight: 700.</p>
+      <p class="p-two">This one uses Space Mono at a smaller size, styled italic — giving it a quieter, technical feel.</p>
+    </div>
+    <p class="code-note">Properties used: <span>font-family</span>, <span>font-size</span>, <span>font-weight</span>, <span>font-style</span></p>
+  </section>
+  <hr class="divider" />
+
+  <section class="ex" id="ex3">
+    <div class="ex-tag blue">Exercise 3 — Borders, Padding &amp; Spacing</div>
+    <div class="demo">
+      <div class="quote-box">
+        <p>The best way to learn CSS is to break things on purpose — then figure out why they broke.</p>
+        <cite>— Every web developer, eventually</cite>
+      </div>
+    </div>
+    <p class="code-note">Properties used: <span>border</span>, <span>padding</span>, <span>margin</span></p>
+  </section>
+  <hr class="divider" />
+
+  <section class="ex" id="ex4">
+    <div class="ex-tag pink">Exercise 4 — Navigation Bar</div>
+    <div class="demo">
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="code-note">Properties used: <span>list-style-type</span>, <span>display: flex</span>, <span>text-decoration</span>, <span>padding</span>, <span>:hover</span></p>
+  </section>
+  <hr class="divider" />
+
+  <section class="ex" id="ex5">
+    <div class="ex-tag lime">Exercise 5 — Styled Profile Card</div>
+    <div class="demo">
+      <div class="profile-card">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&q=80" alt="Profile photo of Alex" />
+        <h2>Alex Johnson</h2>
+        <p>Web developer &amp; photographer based in Prague. Clean code, great design, mountain light.</p>
+      </div>
+    </div>
+    <p class="code-note">Properties used: <span>max-width</span>, <span>border</span>, <span>box-shadow</span>, <span>text-align</span>, <span>padding</span>, <span>:hover</span></p>
+  </section>
+</body>
+</html>
