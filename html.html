@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Exercises — Solutions</title>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+   <style>
+    :root {
+      --ink: #1a1208;
+      --paper: #f5f0e8;
+      --accent: #c0392b;
+      --rule: #c8b89a;
+      --muted: #6b5c47;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.8;
+      padding: 0 1rem 4rem;
+    }
+    .exercise-label {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.65rem;
+      font-style: italic;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.15em 0.6em;
+      margin-bottom: 1rem;
+    }
+    .ex {
+      max-width: 720px;
+      margin: 0 auto 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--rule);
+    }
+    .ex:first-of-type { 
+      border-top: none; 
+    }
+    #ex1 p { 
+      font-size: 1.05rem; color: var(--muted); margin-top: 0.5rem; 
+    }
+    #ex2 h1 { 
+      font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; 
+    }
+    #ex2 h2 { 
+      font-family: 'Playfair Display', serif; font-style: italic; 
+      font-weight: 400; 
+      font-size: 1.4rem; 
+      color: var(--muted); 
+      margin-top: 0.4rem; 
+      margin-bottom: 1.2rem; 
+    }
+    #ex2 p { 
+      margin-bottom: 0.8rem; 
+    }
+    #ex3 h1 { 
+      font-family: 'Playfair Display', serif; font-size: 1.6rem; 
+      margin-bottom: 1rem; 
+    }
+    #ex3 ul { 
+      list-style: none; 
+      padding: 0; 
+    }
+    #ex3 ul li { 
+      padding: 0.5rem 0; 
+      border-bottom: 1px dashed var(--rule); 
+    }
+    #ex3 ul li::before { 
+      content: "→ "; 
+      color: var(--accent); 
+      font-style: italic; 
+    }
+    #ex3 a { 
+      color: var(--ink); 
+      text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); transition: color 0.2s; 
+    }
+    #ex3 a:hover { 
+      color: var(--accent); 
+    }
+    #ex4 figure { 
+      margin: 1.2rem 0; 
+      display: inline-block; 
+    }
+    #ex4 figure img { 
+      display: block; 
+      width: 220px; 
+      height: 150px; 
+      object-fit: cover; 
+      border: 2px solid var(--rule); 
+      filter: sepia(0.2); 
+    }
+    #ex4 figcaption { 
+      font-size: 0.8rem; 
+      color: var(--muted); 
+      font-style: italic; 
+      margin-top: 0.3rem; 
+    }
+    #ex4 p {
+      margin-top: 0.8rem; 
+    }
+    #ex5 header { 
+      border-left: 3px solid var(--accent); padding-left: 1rem; 
+      margin-bottom: 2rem; 
+    }
+    #ex5 header h1 { 
+      font-family: 'Playfair Display', serif; font-size: 2.2rem; 
+    }
+    #ex5 header p { 
+      color: var(--muted); 
+      font-style: italic; 
+    }
+    #ex5 section { 
+      margin-bottom: 2rem; 
+    }
+    #ex5 section h2 { 
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; 
+      color: var(--muted); 
+      margin-bottom: 0.6rem; 
+    }
+    #ex5 .bio-img { 
+      width: 100px; 
+      height: 100px; 
+      object-fit: cover; 
+      border-radius: 50%; 
+      border: 3px solid var(--rule); 
+      float: left; 
+      margin: 0 1.2rem 0.5rem 0; 
+    }
+    #ex5 ul { 
+      list-style: disc; 
+      padding-left: 1.4rem; 
+    }
+    #ex5 ul li { 
+      margin-bottom: 0.3rem; 
+    }
+    #ex5 .links-list { 
+      list-style: none; 
+      padding: 0; 
+    }
+    #ex5 .links-list li { 
+      margin-bottom: 0.4rem; 
+    }
+    #ex5 .links-list a { 
+      color: var(--accent); 
+      text-decoration: none; 
+      border-bottom: 1px solid transparent; transition: border-color 0.2s; 
+    }
+    #ex5 .links-list a:hover { 
+      border-color: var(--accent); 
+    }
+    #ex5 footer { 
+      clear: both; 
+      border-top: 1px solid var(--rule); 
+      padding-top: 0.8rem; 
+      font-size: 0.85rem; 
+      color: var(--muted); 
+      font-style: italic; 
+    }
+    #ex5 hr { 
+      border: none; 
+      border-top: 1px solid var(--rule); 
+      margin: 1.4rem 0; 
+    }
+    .page-header { 
+      max-width: 720px; 
+      margin: 0 auto; 
+      padding: 3rem 0 2rem; 
+    }
+    .page-header h1 { 
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); 
+    }
+    .page-header p { 
+      color: var(--muted); font-style: italic; 
+    }
+  </style>
+
+</head>
+<body>
+  <div class="page-header">
+      <h1>HTML Basics — Solutions</h1>
+      <p>All five exercises solved in one page.</p>
+  </div>
+
+  <div class="ex" id="ex1">
+    <span class="exercise-label">Exercise 1 — Basic Structure</span>
+    <p>Hi, my name is Diana and I'm learning how to build websites with HTML. </p>
+  </div>
+
+  <div class="ex" id="ex2">
+    <span class="exercise-label">Exercise 2 — Headings & Paragraphs</span>
+    <h1>Diana</h1>
+    <h2>Favourite Hobby: Ice Skating</h2>
+    <p>Smth</p>
+    <p>Smth</p>
+  </div>
+
+  <div class="ex" id="ex3">
+    <span class="exercise-label">Exercise 3 — Lists & Links</span>
+    <h1>My Favourite Websites</h1>
+    <ul>
+      <li><a href="https://www.temu.com/">Buying things</a></li>
+      <li><a href="https://www.w3schools.com">Good tutorials</a></li>
+      <li><a href="https://open.spotify.com/">Music</a></li>
+    </ul>
+  </div>
+
+  <div class="ex" id="ex4">
+    <span class="exercise-label">Exercise 4 — Images & Formatting</span>
+    <br>
+    <figure>
+      <img 
+        src="../mountains.png"
+        alt="A stunning mountain landscape at sunrise with golden light hitting the peaks"
+        width="220" height="150"
+      />
+      <figcaption>Mountain sunrise — my favourite shot.</figcaption>
+    </figure>
+    <p>This photo was taken during a <b>solo hiking trip</b> last December. The air was <i>cold and still</i>, and the light was extraordinary.</p>
+    <p>Good images need a descriptive <b>alt attribute</b> so screen readers can describe them to visually impaired users.</p>
+  </div>
+
+  <div class="ex" id="ex5">
+    <span class="exercise-label">Exercise 5 — Personal Bio</span>
+    <header>
+        <h1>Diana Makarevych</h1>
+        <p>"Chasing light, one frame at a time."</p>
+    </header>
+    <section>
+        <h2>About Me</h2>
+        <img class="bio-img" src="https://images/photo" alt="Portrait placeholder" />
+      <p>I'm a <b>web creator</b> in Prague. I spend my weekends <i>exploring old city streets</i> with a camera in hand.</p>
+    </section>
+    <hr />
+    <section>
+      <h2>Favourite Foods</h2>
+      <ul>
+        <li>Spagetti</li>
+        <li>Sushi</li>
+        <li>Salad</li>
+        <li>Good Latte.</li>
+      </ul>
+    </section>
+    <hr />
+  </div>
+
+</body>
+</html>
